@@ -1,0 +1,40 @@
+body { 
+    background: linear-gradient(#a0ffc0, #a0ffe0);
+    margin: 5px;
+}
+
+nav.navbar { 
+    background-color: rgba(0, 0, 0, 0.5); 
+    border-width: 0px;
+    margin-top: 10px; 
+    margin-bottom: 10px;        
+}
+
+.navbar-brand {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.navbar a {
+    color: #ffffff !important;    
+}
+
+nav li {
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #ffffff !important; 
+}
+
+nav li:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 10px;
+    padding: 10px;
+    font-size: 4vw;
+    text-align: center;
+}
+
+
+        

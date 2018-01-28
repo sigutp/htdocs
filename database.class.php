@@ -194,6 +194,8 @@ class Database {
         }
     }
     
+    //////////////// --- ARTICLE --- ////////////////
+    
     public function addArticle($name, $authors, $abstract, $fileName){
         $user_id = $_SESSION["user"]["iduzivatel"];
         $time = date("Y-m-d H:i:s", time());
@@ -232,10 +234,40 @@ class Database {
         return $this->executeQuery($q);
     }
     
+    public function getAllArticles(){        
+        $q = "SELECT * FROM sigutp_articles";
+        return $this->executeQuery($q);
+    }
+    
+    public function getAllArticlesAuthor(){
+        $q = "SELECT * FROM sigutp_articles, sigutp_uzivatele WHERE sigutp_articles.user_id = sigutp_uzivatele.iduzivatel;";
+        return $this->executeQuery($q);
+    }
+    
     public function fetchArticle($article_id){
         $q = "SELECT * FROM sigutp_articles WHERE id = $article_id";
         $databaseEntry = $this->executeQuery($q);
         return $databaseEntry->fetch();
+    }
+    
+    //////////////// --- REVIEW --- ////////////////
+    
+    public function getReviewers(){
+        $q = "SELECT * FROM sigutp_uzivatele WHERE idprava = 2;";
+        return $this->executeQuery($q);
+    }    
+    
+    public function getAllArticlesWithReviews(){        
+        $q = "SELECT authors.login AS author_name, sigutp_articles.name, sigutp_articles.authors, sigutp_articles.time, reviewers.login AS reviewer_name, sigutp_reviews.state, sigutp_reviews.merit, sigutp_reviews.accuracy, sigutp_reviews.language, sigutp_reviews.review_id AS id
+        FROM sigutp_articles, sigutp_reviews, sigutp_uzivatele AS authors, sigutp_uzivatele AS reviewers WHERE sigutp_articles.id = sigutp_reviews.article_id AND sigutp_articles.user_id = authors.iduzivatel AND sigutp_reviews.reviewer_id = reviewers.iduzivatel ORDER BY sigutp_articles.id;";
+        
+        return $this->executeQuery($q);
+    }
+        
+    public function assignReview($article_id, $reviewer_id){
+        $q = "INSERT INTO sigutp_reviews(article_id, reviewer_id, state, merit, accuracy, language)
+                VALUES ('$article_id', '$reviewer_id', 'working', '0', '0', '0')";
+        $this->executeQuery($q);
     }
 }
 

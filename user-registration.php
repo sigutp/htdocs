@@ -12,13 +12,14 @@
 ?>
 
 <?php
-   // zpracovani odeslanych formularu
+    // zpracovani odeslanych formularu
+    // uzivatel je vzdy zalozen jako "autor"
     if(isset($_POST['potvrzeni'])){ // nova registrace
         if($_POST["heslo"]==$_POST["heslo2"]){
             if($PDOObj->allUserInfo($_POST["login"])!=null){ // tento uzivatel uz existuje
                 echo "<b>Tento login už existuje. Zvolte si prosím jiný.</b><br><br>";
             } else {
-                $PDOObj->addNewUser($_POST["jmeno"], $_POST["login"], $_POST["heslo"], $_POST["email"], $_POST["pravo"]);    
+                $PDOObj->addNewUser($_POST["jmeno"], $_POST["login"], $_POST["heslo"], $_POST["email"], 3);    
                 $PDOObj->userLogin($_POST["login"],$_POST["heslo"]);                
             }
         } else {
@@ -39,10 +40,7 @@
                 <tr><td>Heslo 2:</td><td><input type="password" name="heslo2" id="pas2" required></td></tr>
                 <tr><td>Ověření hesla:</td><td><output name="x" for="pas1 pas2"></output></td></tr>
                 <tr><td>Jméno:</td><td><input type="text" name="jmeno" value="<?php echo @$_POST["jmeno"]; ?>" required></td></tr>
-                <tr><td>E-mail:</td><td><input type="email" name="email" value="<?php echo @$_POST["email"]; ?>" required></td></tr>
-                <tr><td>Právo:</td>
-                    <td><?php echo createSelectBox($PDOObj->allRights(),null); ?></td>
-                </tr>
+                <tr><td>E-mail:</td><td><input type="email" name="email" value="<?php echo @$_POST["email"]; ?>" required></td></tr>                
             </table>
             
             <input type="submit" name="potvrzeni" value="Registrovat">

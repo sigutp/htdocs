@@ -19,5 +19,7 @@ global $web_pagesExtension, $web_pages;
     $web_pages[3] = "user-management";
     $web_pages[4] = "new-article";
     $web_pages[5] = "articles";
-    $web_pages[6] = "edit-article"
+    $web_pages[6] = "edit-article";
+    $web_pages[7] = "manage-reviews";
+    $web_pages[8] = "my-reviews";
 ?>

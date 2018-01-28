@@ -15,51 +15,86 @@ function head($title=""){
 ?>
 <!doctype>
 <html lang="cs">
-    <head>
-        <meta charset="utf-8">
-        <title><?php echo $title; ?></title>
-        
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        
-        <style>
-            body { background-color: orange; }
-            nav { background-color: darkblue; margin-bottom: 10px; padding: 5px; color:lightgray;}
-            nav a { color: aliceblue; padding: 5px;}
-        </style>
-    </head>
-    <body>
-        <h1><?php echo $title; ?></h1>
-        <div>
-            <?php
-            if (isset($_SESSION["user"])){
-                echo "Přihlášen: " . $_SESSION['user']['login'];
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        <?php echo $title; ?>
+    </title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+    <div class="containter">
+        <h1>Konference</h1>
+        <h2>
+            <?php echo $title; ?>
+        </h2>
+
+
+
+        <nav class="navbar navbar-default">
+            <div class="containter-fluid">
+                <div class="navbar-header">
+
+                    <?php
+                if (isset($_SESSION["user"])){
+                    echo "<a class='navbar-brand'>Přihlášen: " . $_SESSION['user']['login'] . "</a>";
+                }
+                ?>
+
+                </div>
+
+                <ul class="nav navbar-nav">
+                    <?php 
+            // vidi pouze neprihlaseni uzivatele
+            if (!isset($_SESSION["user"])){
+                echo "<li><a href='index.php?page=0'>Přihlásit</a></li>";
+                echo "<li><a href='index.php?page=1'>Registrace</a></li>";
             }
-            ?>
-        </div>
-        <nav>Menu: 
-            <a href="index.php?page=0">Login/Logout</a> |
-            <a href="index.php?page=1">Registrace</a> |
-            <a href="index.php?page=2">Sprava osobních údajů</a> |
-            <a href="index.php?page=3">Sprava uživatelů</a> | 
-            <?php 
+                         
+            // vidi pouze prihlaseni uzivatele
             if (isset($_SESSION["user"])){
-                echo "<a href='index.php?page=5'>Příspěvky</a>";
+                echo "<li><a href='index.php?page=0'>Odhlásit</a></li>";
+                echo "<li><a href='index.php?page=2'>Správa osobních údajů</a></li>";
+            }                 
+                
+            // vidi pouze administratori
+            if (isset($_SESSION["user"]) && ($_SESSION["user"]["idprava"] == 1)){
+                echo "<li><a href='index.php?page=3'>Správa uživatelů</a></li>";
+                echo "<li><a href='index.php?page=7'>Správa recenzí</a></li>";
+            }
+                         
+            // vidi pouze autori
+            if (isset($_SESSION["user"]) && ($_SESSION["user"]["idprava"] == 3)){
+                echo "<li><a href='index.php?page=5'>Příspěvky</a></li>";                
             }            
             ?>
-            
+
+                </ul>
+            </div>
         </nav>
         <div>
-<?php 
+            <?php 
 }
 
 /**
  *  Vytvoreni paticky.
  */
 function foot(){
-?>                
+?>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
 
 
