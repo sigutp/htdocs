@@ -1,0 +1,55 @@
+Aplikace je důsledně rozdělena (dle zásad architektury MVC - \emph{Model, View, Controller}) na backend (Model) a frontend (View). \emph{View} a \emph{Controller} se ve frontendu nepatrně překrývají, neboť je zobrazování komponent z velké části něčím podmíněno. Dále časté využívání metody \emph{POST} ztěžuje dát \emph{Controller} do samostatného souboru.
+
+\section{Backend -- Model}
+Celý backend je schovaný ve třídě \emph{database.class.php}. Obsahuje 5 hlavních bloků metod:
+
+\begin{itemize}
+\item{konstruktor objektu PDO a metody pro práci s dotazy}
+\item{manipulace s právy uživatelů}
+\item{manipulace s uživateli}
+\item{manipulace s články}
+\item{manipulace s recenzemi}
+\end{itemize}
+
+\par \noindent
+V SQL dotazech jasně převládá příkaz \emph{SELECT}. Dále jsou použity příkazy \emph{DELETE, UPDATE, INSERT, SELECT COUNT a SELECT AVG}.
+
+\subsection{Databáze}
+Databáze obsahuje čtyři tabulky -- tabulky uživatelů, uživatelských práv, článků a recenzí. Všechny čtyři tabulky spolu interagují pomocí SQL dotazů. Pro detaily vizte přiložený soubor \emph{Schéma dokumentace.pdf}.
+
+\section{Frontend -- View + Controller}
+Zde je uveden výčet tříd s jejich funkcemi. U každé je navíc uvedeno, kdo k ní má přístup.
+\subsection{Správa uživatelů}
+\begin{labeling}{\texttt{user-registration.php}}
+\item [\texttt{user-registration.php}] \emph{Nepřihlášení} Založení nového uživatelského účtu.
+\item [\texttt{login.php}] \emph{Přihlášení | Nepřihlášení} Správa přihlašování a odhlašování uživatelů.
+\item [\texttt{user-update.php}] \emph{Přihlášení} Změna údajů v uživatelském účtu.
+\item [\texttt{user-management.php}] \emph{Administrátor} Správa uživatelů Administrátorem -- změna práv, blokování, smazání.
+\end{labeling}
+
+\subsection{Správa článků}
+\begin{labeling}{\texttt{edit-article.php}}
+\item [\texttt{articles.php}] \emph{Autor} Správa článků přihlášeným uživatelem. Vidí pouze své články.
+\item [\texttt{new-article.php}] \emph{Autor} Vytvoření nového článku. Na tuto stránku neexistuje odkaz v navigaci, je zobrazena kontextově na stránce \emph{articles.php}.
+\item [\texttt{edit-article.php}] \emph{Autor} Úprava článku autorem. Na tuto stránku neexistuje odkaz v navigaci, je zobrazena kontextově na stránce \emph{articles.php}.
+\item [\texttt{upload.php}] \emph{Nikdo} Stará se o nahrávání souborů a vložení informací o nich do databáze. Tato třída není přístupná zvenčí (čistý Controller).
+\item [\texttt{home.php}] \emph{Všichni} Zobrazování publikovaných článků.
+\end{labeling}
+
+\subsection{Správa recenzí}
+\begin{labeling}{\texttt{manage-reviews.php}}
+\item [\texttt{manage-reviews.php}] \emph{Administrátor} Přidělování článků k recenzím jednotlivým recenzentům. Přijímání, nebo odmítání článků, které byly zhodnoceny alespoň třemi recenzenty.
+\item [\texttt{my-reviews.php}] \emph{Recenzent} Seznam článků přidělených k hodnocení přihlášenému recenzentovi.
+\item [\texttt{new-review.php}] \emph{Recenzent} Vytvoření nové recenze článku (recenze fakticky vznikne již při přidělení článku k recenzi Administrátorem a Recenzentem je pouze upravena). Na tuto stránku neexistuje odkaz v navigaci, je zobrazena kontextově na stránce \emph{my-reviews.php}.
+\end{labeling}
+
+\subsection{Vzhled -- View}
+\begin{labeling}{\texttt{zaklad.php}}
+\item [\texttt{zaklad.php}] Obsahuje hlavní HTML kód stránky -- hlavičku a tělo.
+\end{labeling}
+
+\section{Controller}
+\begin{labeling}{\texttt{settings.inc.php}}
+\item [\texttt{index.php}] Rozcestník umožňující indexování stránek čísly, ne jejich názvy.
+\item [\texttt{settings.inc.php}] Rozcestník kódující názvy souborů čísly.
+\end{labeling}

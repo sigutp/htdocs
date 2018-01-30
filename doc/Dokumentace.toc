@@ -1,0 +1,14 @@
+\select@language {czech}
+\contentsline {chapter}{\numberline {1}Pou\IeC {\v z}it\IeC {\'e} technologie}{1}
+\contentsline {section}{\numberline {1.1}Programovac\IeC {\'\i } jazyky}{1}
+\contentsline {section}{\numberline {1.2}Frameworky}{1}
+\contentsline {chapter}{\numberline {2}Adres\IeC {\'a}\IeC {\v r}ov\IeC {\'a} struktura}{2}
+\contentsline {chapter}{\numberline {3}Architektura aplikace}{3}
+\contentsline {section}{\numberline {3.1}Backend -- Model}{3}
+\contentsline {subsection}{\numberline {3.1.1}Datab\IeC {\'a}ze}{3}
+\contentsline {section}{\numberline {3.2}Frontend -- View + Controller}{3}
+\contentsline {subsection}{\numberline {3.2.1}Spr\IeC {\'a}va u\IeC {\v z}ivatel\IeC {\r u}}{4}
+\contentsline {subsection}{\numberline {3.2.2}Spr\IeC {\'a}va \IeC {\v c}l\IeC {\'a}nk\IeC {\r u}}{4}
+\contentsline {subsection}{\numberline {3.2.3}Spr\IeC {\'a}va recenz\IeC {\'\i }}{4}
+\contentsline {subsection}{\numberline {3.2.4}Vzhled -- View}{5}
+\contentsline {section}{\numberline {3.3}Controller}{5}

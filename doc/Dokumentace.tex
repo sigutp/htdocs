@@ -1,0 +1,61 @@
+\documentclass[
+12pt,
+a4paper,
+pdftex,
+czech,
+titlepage, 
+]{report}
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{blindtext}
+\usepackage{scrextend}
+
+\titleformat{\chapter}
+  {\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
+\titlespacing*{\chapter}{0pt}{0ex plus 1ex minus .2ex}{2.0ex plus .2ex}
+
+\begin{document}
+
+\begin{titlepage}
+	\vspace*{-2cm}
+	{\centering\includegraphics[scale=1.0]{img/logo_fav.pdf}\par}
+	\centering
+	\vspace*{2cm}
+	{\Large Semestrální práce z předmětu KIV/WEB\par}
+	\vspace{1.5cm}
+	{\Huge\bfseries Webové stránky konference\par}		
+	\vspace{2cm}
+
+	{\Large Pavel Šigut\par}
+	{\Large A16B0141P\par}
+	{\Large sigutp@students.kiv.zcu.cz\par}	
+	\vfill
+
+	{\Large 28.\,1.\,2018}
+\end{titlepage}
+
+\tableofcontents
+\thispagestyle{empty}
+\clearpage
+
+\chapter{Použité technologie}
+\setcounter{page}{1}
+\input{01_pouzite_technologie}
+
+\chapter{Adresářová struktura}
+\input{02_adresarova_struktura}
+
+\chapter{Architektura aplikace}
+\input{03_architektura}
+
+\end{document}

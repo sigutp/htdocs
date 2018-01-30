@@ -51,6 +51,8 @@ class Database {
         return $obj->fetchAll(); // všechny řádky do pole        
     }
     
+    //////////////// --- ROLES --- ////////////////
+    
     /**
      *  Vraci prava uzivatelu.
      *  @return array   Dostupna prava uzivatelu.
