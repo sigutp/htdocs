@@ -1,7 +1,9 @@
+<!-- ZMĚNA ÚDAJŮ STÁVAJÍCÍHO UŽIVATELE -->
+
 <?php 
     // nacteni hlavicky stranky
     include("zaklad.php");
-    head("Úprava osobních údajů uživatele");
+    head("Správa osobních údajů");
 ?>
 
 <?php 
@@ -43,21 +45,31 @@
     } else { // je prihlasen
    ///////////// PRO PRIHLASENE UZIVATELE ///////////////                
 ?>
-        <b>Osobní údaje</b>
+        <h3>Osobní údaje</h3>
         <form action="" method="POST" oninput="x.value=(pas1.value==pas2.value)?'OK':'Nestejná hesla'">
-            <table>
-                <tr><td>Současné heslo:</td><td><input type="password" name="heslo-puvodni" required></td></tr>
-                <tr><td>Login:</td><td><?php echo $_SESSION["user"]["login"]; ?></td></tr>
-                <tr><td>Heslo 1:</td><td><input type="password" name="heslo" id="pas1"></td></tr>
-                <tr><td>Heslo 2:</td><td><input type="password" name="heslo2" id="pas2"></td></tr>
-                <tr><td>Ověření hesla:</td><td><output name="x" for="pas1 pas2"></output></td></tr>
-                <tr><td>Jméno:</td><td><input type="text" name="jmeno" value="<?php echo $_SESSION["user"]["jmeno"]; ?>" required></td></tr>
-                <tr><td>E-mail:</td><td><input type="email" name="email" value="<?php echo $_SESSION["user"]["email"]; ?>" required></td></tr>
-                <tr><td>Právo:</td>
-                    <td><?php echo createSelectBox($PDOObj->allRights(),$_SESSION["user"]["idprava"]); ?></td>
+            <div class="table-responsive">
+            <table class="table">
+                <tr><td class="col-md-1">Současné heslo:</td><td class="col-md-1"><input type="password" name="heslo-puvodni" required></td></tr>
+                <tr><td class="col-md-1">Login:</td><td class="col-md-1"><?php echo $_SESSION["user"]["login"]; ?></td></tr>
+                <tr><td class="col-md-1">Heslo 1:</td><td class="col-md-1"><input type="password" name="heslo" id="pas1"></td></tr>
+                <tr><td class="col-md-1">Heslo 2:</td><td class="col-md-1"><input type="password" name="heslo2" id="pas2"></td></tr>
+                <tr><td class="col-md-1">Ověření hesla:</td><td class="col-md-1"><output name="x" for="pas1 pas2"></output></td></tr>
+                <tr><td class="col-md-1">Jméno:</td><td class="col-md-1"><input type="text" name="jmeno" value="<?php echo $_SESSION["user"]["jmeno"]; ?>" required></td></tr>
+                <tr><td class="col-md-1">E-mail:</td><td class="col-md-1"><input type="email" name="email" value="<?php echo $_SESSION["user"]["email"]; ?>" required></td></tr>
+                <tr><td class="col-md-1">Právo:</td>
+                    <td class="col-md-1"><?php 
+                            if ($_SESSION["user"]["idprava"] == 1){
+                                echo "Administrátor"; 
+                            } else if ($_SESSION["user"]["idprava"] == 2){
+                                echo "Recenzent"; 
+                            } else if ($_SESSION["user"]["idprava"] == 3){
+                                echo "Autor"; 
+                            }
+                            
+                        ?></td>
                 </tr>
             </table>
-            
+            </div>
             <input type="submit" name="potvrzeni" value="Upravit osobní údaje">
         </form>
         

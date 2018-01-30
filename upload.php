@@ -1,4 +1,11 @@
+<!-- PRÁCE SE SOUBORY -->
+
 <?php
+
+/**
+* Nahraje soubor dle atributů uvedených v proměnné $_POST.
+* Vloží informace o článku a souboru do databáze.
+*/
 function upload(){
           
     if (uploadFile()){
@@ -12,6 +19,13 @@ function upload(){
     }
 }
 
+/**
+* Zkontroluje, jestli soubor není moc velký.
+* Zkontroluje, jestli je soubor ve formátu PDF.
+* Nahraje soubor dle atributů uvedených v proměnné $_POST.
+* Přemístí soubor do složky articles, podsložky označené loginem právě přihlášeného uživatele.
+* @return úspěšnost operace
+*/
 function uploadFile(){
     $name = $_POST['name'];
     $authors = $_POST['authors'];
@@ -51,26 +65,45 @@ function uploadFile(){
         echo "Soubor nebyl nahrán.";
         // if everything is ok, try to upload file
     } else {
-        if (move_uploaded_file($_FILES["pdfFile"]["tmp_name"], $target_file)) {   
-            echo "Soubor ". basename( $_FILES["pdfFile"]["name"]). " byl úspěšně nahrán.";
+        if (move_uploaded_file($_FILES["pdfFile"]["tmp_name"], $target_file)) {           
+            echo "<div class='alert alert-success alert-dismissable'>
+                        <a href='#' class='close' data-dismiss='alert' aria-label='close'><span class='glyphicon glyphicon-remove'></span></a>
+                        Soubor <strong>". basename( $_FILES["pdfFile"]["name"]). "</strong> byl úspěšně nahrán.
+                    </div>";
             return true;
         } else {
-            echo "Soubor nebyl nahrán.";
+            echo "<div class='alert alert-danger alert-dismissable'>
+                        <a href='#' class='close' data-dismiss='alert' aria-label='close'><span class='glyphicon glyphicon-remove'></span></a>
+                        Soubor nebyl nahrán.
+                    </div>";
             return false;
         }
     }
 }
 
+/**
+* Odstraní soubor.
+* @param fileName název souboru
+*/
 function deleteFile($fileName){            
     $target_dir = "articles/" . $_SESSION["user"]["login"] . "/" ;
     $target_file = $target_dir . $fileName;
         
     chmod($target_file, 0777);       
     if(unlink($target_file)){
-        echo "Odstranění bylo úspěšné";
+        echo "<div class='alert alert-success alert-dismissable'>
+                        <a href='#' class='close' data-dismiss='alert' aria-label='close'><span class='glyphicon glyphicon-remove'></span></a>
+                        Odstranění bylo úspěšné.
+                    </div>";
     }        
 }
 
+/**
+* Znovu nahraje článek.
+* Pokud se změnil soubor, nahradí se novým.
+* Aktualizuje údaje v databázi.
+* @param article_id ID článku
+*/
 function reupload($article_id){
     global $PDOObj;
     $name = $_POST['name'];

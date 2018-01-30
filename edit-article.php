@@ -1,3 +1,5 @@
+<!-- ÚPRAVA ČLÁNKU AUTOREM -->
+
 <?php 
 // nacteni hlavicky stranky
 include("zaklad.php");
@@ -19,51 +21,59 @@ if(!$PDOObj->isUserLogged()){ // neni prihlasen
     $id = $_POST['article_id'];    
     $article = $PDOObj->fetchArticle($id);    
 ?>
-<div>
-    <a href="index.php?page=5">Zpět</a>
-</div>
-        
-        <b>Upravit příspěvek</b>
-        <form action="" method="POST" enctype="multipart/form-data">   
-            <input type="hidden" name="article_id" value="<?php echo $id ?>"/>
-            <table>
-                
-                <tr>
-                    <td>Datum:</td>
-                    <td><?php echo $article['time']?></td>
-                </tr>
-                <tr>
-                    <td>Název příspěvku:</td>
-                    <td><input type="text" name="name" id="name" value="<?php echo $article['name']?>" required></td>
-                </tr>
-                <tr>
-                    <td>Autoři</td>
-                    <td><input type="text" name="authors" id="authors" value="<?php echo $article['authors']?>" required></td>
-                </tr>
-                <tr>
-                    <td>Abstrakt</td>
-                    <td><input type="text" name="abstract" id="abstract" value="<?php echo $article['abstract']?>" required></td>
-                </tr>
-                <tr>
-                    <td>PDF soubor</td>
-                    <td><?php echo $article['fileName']?></td>
-                </tr>
-                <tr>
-                    <td>Změnit PDF soubor</td>
-                    <td><input type="file" name="pdfFile" id="pdfFile" accept="application/pdf"></td>
-                </tr>
-            </table>
+        <!-- formulář pro upravení článku -->
+        <div class="floating">
+            <a class="floating" href="index.php?page=5">Zpět</a>
+        </div>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="article_id" value="<?php echo $id ?>" />
+            <div class='table-responsive'>
+                <table class='table'>
 
+                    <tr>
+                        <td class="col-md-1">Datum</td>
+                        <td class="col-md-1">
+                            <?php echo $article['time']?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-1">Název příspěvku</td>
+                        <td class="col-md-1"><input type="text" name="name" id="name" value="<?php echo $article['name']?>" required></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-1">Autoři</td>
+                        <td class="col-md-1"><input type="text" name="authors" id="authors" value="<?php echo $article['authors']?>" required></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-1">Abstrakt</td>
+                        <td class="col-md-1"><input type="text" name="abstract" id="abstract" value="<?php echo $article['abstract']?>" required></td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-1">PDF soubor</td>
+                        <td class="col-md-1">
+                            <?php echo $article['fileName']?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-1">Změnit PDF soubor</td>
+                        <td class="col-md-1"><input type="file" name="pdfFile" id="pdfFile" accept="application/pdf"></td>
+                    </tr>
+                </table>
+            </div>
             <input type="submit" name="submission" value="Uložit">
         </form>
 
 
         <?php
 
-    
+    // po zmáčknutí tlačítka "Uložit"
     if(isset($_POST['submission'])){       
         reupload($id);
         header("Location: index.php?page=5");
     }
 }
+?>
+
+            <?php
+    foot();
 ?>

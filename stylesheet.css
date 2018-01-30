@@ -1,13 +1,42 @@
-body { 
-    background: linear-gradient(#a0ffc0, #a0ffe0);
+/* --- BODY --- */
+
+body {
+    background: linear-gradient(#c0ff80, #80ffff);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     margin: 5px;
 }
 
-nav.navbar { 
-    background-color: rgba(0, 0, 0, 0.5); 
+/* --- DIVS --- */
+
+.downloadArticle {
+    background-color: rgba(0, 0, 0, 0.125);
+    margin-top: 5px;
+    text-align: center;
+}
+
+div.floating {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* --- ANCHORS --- */
+
+a.floating {
+    font-size: 1.5em;
+    color: #000000;
+    background-color: rgba(0, 0, 0, 0.125);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* --- NAVIGATION --- */
+
+nav.navbar {
+    background-color: rgba(0, 0, 0, 0.5);
     border-width: 0px;
-    margin-top: 10px; 
-    margin-bottom: 10px;        
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .navbar-brand {
@@ -15,18 +44,24 @@ nav.navbar {
 }
 
 .navbar a {
-    color: #ffffff !important;    
+    color: #ffffff !important;
 }
 
 nav li {
     padding-left: 5px;
     padding-right: 5px;
-    color: #ffffff !important; 
+    color: #ffffff !important;
 }
 
-nav li:hover{
+li.home {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+nav li:hover {
     background-color: rgba(0, 0, 0, 0.5);
 }
+
+/* --- HEADERS --- */
 
 h1 {
     background-color: rgba(255, 255, 255, 0.5);
@@ -36,5 +71,78 @@ h1 {
     text-align: center;
 }
 
+h3 {
+    border: 0px;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: #000000;
+}
 
-        
+/* --- TABLES --- */
+
+.table {
+    border: 2px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.25);
+}
+
+td {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+
+    border: 1px !important;
+    border-style: solid !important;
+    border-color: rgba(0, 0, 0, 0.125) !important;
+
+    border-left-color: rgba(0, 0, 0, 0.25) !important;
+    border-right-color: rgba(0, 0, 0, 0.25) !important;
+
+    vertical-align: middle !important;
+}
+
+td.buttonField {
+    text-align: center;
+}
+
+th {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+
+    text-align: center !important;
+
+    background-color: rgba(0, 0, 0, 0.125) !important;
+
+    border: 1px !important;
+    border-style: solid !important;
+    border-color: rgba(0, 0, 0, 0.25) !important;
+}
+
+/* --- CONTAINERS --- */
+
+.container {
+    background: rgba(255, 255, 255, 0.5);
+    margin: 8px;
+    border-radius: 8px;
+}
+
+.parent-container {
+    display: flex;
+}
+
+@media only screen and (min-width: 576px) {
+    .table {
+        max-width: 66vw;
+    }
+}
+
+@media only screen and (min-width: 768px) {}
+
+@media only screen and (min-width: 992px) {}
+
+@media only screen and (min-width: 1200px) {}

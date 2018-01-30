@@ -1,3 +1,5 @@
+<!-- ZÁKLADNÍ ŠABLONA STRÁNKY OBSAHUJÍCÍ HLAVIČKU, TĚLO A PATIČKU -->
+
 <?php 
     // načtení souboru s funkcemi
     include("database.class.php");
@@ -13,7 +15,7 @@
  */
 function head($title=""){    
 ?>
-<!doctype>
+<!doctype HTML>
 <html lang="cs">
 
 <head>
@@ -29,7 +31,7 @@ function head($title=""){
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -59,11 +61,13 @@ function head($title=""){
             if (!isset($_SESSION["user"])){
                 echo "<li><a href='index.php?page=0'>Přihlásit</a></li>";
                 echo "<li><a href='index.php?page=1'>Registrace</a></li>";
+                echo "<li class='home'><a href='index.php?page=10'><span class='glyphicon glyphicon-home'></span></a></li>";
             }
                          
             // vidi pouze prihlaseni uzivatele
             if (isset($_SESSION["user"])){
                 echo "<li><a href='index.php?page=0'>Odhlásit</a></li>";
+                echo "<li class='home'><a href='index.php?page=10'><span class='glyphicon glyphicon-home'></span></a></li>";
                 echo "<li><a href='index.php?page=2'>Správa osobních údajů</a></li>";
             }                 
                 
@@ -72,6 +76,11 @@ function head($title=""){
                 echo "<li><a href='index.php?page=3'>Správa uživatelů</a></li>";
                 echo "<li><a href='index.php?page=7'>Správa recenzí</a></li>";
             }
+                         
+            // vidi pouze recenzenti
+            if (isset($_SESSION["user"]) && ($_SESSION["user"]["idprava"] == 2)){
+                echo "<li><a href='index.php?page=8'>Moje recenze</a></li>";                
+            } 
                          
             // vidi pouze autori
             if (isset($_SESSION["user"]) && ($_SESSION["user"]["idprava"] == 3)){
@@ -101,24 +110,3 @@ function foot(){
 <?php
     
 }
-
-
-/**
- *  Vytvori selectbox s pravi uzivatelu.
- *  @param array $rights    Vsechna dostupna prava.
- *  @param integer $selected    Zvolena polozka nebo null.
- *  @return string          Vytvoreny selectbox.
- */
-function createSelectBox($rights,$selected){
-    $res = '<select name="pravo">';
-    foreach($rights as $r){
-        if($selected!=null && $selected==$r['idprava']){ // toto bylo ve stupu
-            $res .= "<option value='".$r['idprava']."' selected>$r[nazev]</option>";    
-        } else { // nemam vstup
-            $res .= "<option value='".$r['idprava']."'>$r[nazev]</option>";    
-        }        
-    }
-    $res .= "</select>";
-    return $res;
-}
-?>

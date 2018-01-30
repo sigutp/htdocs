@@ -1,3 +1,5 @@
+<!-- NOVÝ ČLÁNEK -->
+
 <?php 
 // nacteni hlavicky stranky
 include("zaklad.php");
@@ -15,31 +17,30 @@ if(!$PDOObj->isUserLogged()){ // neni prihlasen
     ///////////// KONEC: PRO NEPRIHLASENE UZIVATELE ///////////////
 } else {
 ?>
-<div>
-    <a href="index.php?page=5">Zpět</a>
+<div class="floating">
+    <a class="floating" href="index.php?page=5">Zpět</a>
 </div>
-        
-        <b>Nový příspěvek</b>
         <form action="" method="POST" enctype="multipart/form-data">
-            <table>
+            <div class="table-responsive">
+            <table class="table">
                 <tr>
-                    <td>Název příspěvku:</td>
-                    <td><input type="text" name="name" id="name" required></td>
+                    <td class="col-md-1">Název příspěvku:</td>
+                    <td class="col-md-1"><input type="text" name="name" id="name" required></td>
                 </tr>
                 <tr>
-                    <td>Autoři</td>
-                    <td><input type="text" name="authors" id="authors" required></td>
+                    <td class="col-md-1">Autoři</td>
+                    <td class="col-md-1"><input type="text" name="authors" id="authors" required></td>
                 </tr>
                 <tr>
-                    <td>Abstrakt</td>
-                    <td><input type="text" name="abstract" id="abstract" required></td>
+                    <td class="col-md-1">Abstrakt</td>
+                    <td class="col-md-1"><input type="text" name="abstract" id="abstract" required></td>
                 </tr>
                 <tr>
-                    <td>PDF soubor</td>
-                    <td><input type="file" name="pdfFile" id="pdfFile" accept="application/pdf"></td>
+                    <td class="col-md-1">PDF soubor</td>
+                    <td class="col-md-1"><input type="file" name="pdfFile" id="pdfFile" accept="application/pdf"></td>
                 </tr>
             </table>
-
+            </div>
             <input type="submit" name="submission" value="Uložit">
         </form>
 
@@ -51,4 +52,8 @@ if(!$PDOObj->isUserLogged()){ // neni prihlasen
        upload();     
     }
 }
+?>
+
+<?php
+    foot();
 ?>

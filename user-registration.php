@@ -1,3 +1,5 @@
+<!-- REGISTRACE NOVÉHO UŽIVATELE -->
+
 <?php 
     // nacteni hlavicky stranky
     include("zaklad.php");
@@ -32,34 +34,51 @@
     if(!$PDOObj->isUserLogged()){ // neni prihlasen
    ///////////// PRO NEPRIHLASENE UZIVATELE ///////////////        
 ?>
-        <b>Registrační formulář</b>
-        <form action="" method="POST" oninput="x.value=(pas1.value==pas2.value)?'OK':'Nestejná hesla'">
-            <table>
-                <tr><td>Login:</td><td><input type="text" name="login" value="<?php echo @$_POST["login"]; ?>" required></td></tr>
-                <tr><td>Heslo 1:</td><td><input type="password" name="heslo" id="pas1" required></td></tr>
-                <tr><td>Heslo 2:</td><td><input type="password" name="heslo2" id="pas2" required></td></tr>
-                <tr><td>Ověření hesla:</td><td><output name="x" for="pas1 pas2"></output></td></tr>
-                <tr><td>Jméno:</td><td><input type="text" name="jmeno" value="<?php echo @$_POST["jmeno"]; ?>" required></td></tr>
-                <tr><td>E-mail:</td><td><input type="email" name="email" value="<?php echo @$_POST["email"]; ?>" required></td></tr>                
-            </table>
-            
-            <input type="submit" name="potvrzeni" value="Registrovat">
-        </form>
+    <b>Registrační formulář</b>
+    <form action="" method="POST" oninput="x.value=(pas1.value==pas2.value)?'OK':'Nestejná hesla'">
+        <table>
+            <tr>
+                <td>Login:</td>
+                <td><input type="text" name="login" value="<?php echo @$_POST[" login "]; ?>" required></td>
+            </tr>
+            <tr>
+                <td>Heslo 1:</td>
+                <td><input type="password" name="heslo" id="pas1" required></td>
+            </tr>
+            <tr>
+                <td>Heslo 2:</td>
+                <td><input type="password" name="heslo2" id="pas2" required></td>
+            </tr>
+            <tr>
+                <td>Ověření hesla:</td>
+                <td><output name="x" for="pas1 pas2"></output></td>
+            </tr>
+            <tr>
+                <td>Jméno:</td>
+                <td><input type="text" name="jmeno" value="<?php echo @$_POST[" jmeno "]; ?>" required></td>
+            </tr>
+            <tr>
+                <td>E-mail:</td>
+                <td><input type="email" name="email" value="<?php echo @$_POST[" email "]; ?>" required></td>
+            </tr>
+        </table>
 
-<?php
+        <input type="submit" name="potvrzeni" value="Registrovat">
+    </form>
+
+    <?php
    ///////////// KONEC: PRO NEPRIHLASENE UZIVATELE ///////////////
     } else { // je prihlasen
    ///////////// PRO PRIHLASENE UZIVATELE ///////////////                
 ?>
         <b>Přihlášený uživatel se nemůže znovu registrovat.</b>
-        
-<?php
+
+        <?php
    ///////////// KONEC: PRO PRIHLASENE UZIVATELE ///////////////                
     }
 ?>
 
-<?php
+            <?php
     // paticka
     foot();
 ?>
-             

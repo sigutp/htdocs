@@ -1,3 +1,5 @@
+<!-- ROZCESTNÍK -->
+
 <?php 
 // stranka s funkci rozcestniku
 

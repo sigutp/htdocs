@@ -1,3 +1,5 @@
+<!-- ROZCESTNÍK -->
+
 <?php
 // soubor obsahujici zakladni nastaveni
 
@@ -22,4 +24,6 @@ global $web_pagesExtension, $web_pages;
     $web_pages[6] = "edit-article";
     $web_pages[7] = "manage-reviews";
     $web_pages[8] = "my-reviews";
+    $web_pages[9] = "new-review";
+    $web_pages[10] = "home";
 ?>
